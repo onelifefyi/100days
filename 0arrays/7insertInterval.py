@@ -10,14 +10,22 @@ def insertInterval(intervals, newInterval):
     resInterval = []
     for i in range(len(intervals)):
         if newInterval[1] < intervals[i][0]:
-            resInterval += newInterval + intervals[i:]
-        elif newInterval[0] > intervals[i][1]:
-            resInterval += intervals[i][1]
+            resInterval += [newInterval] + intervals[i:]
+            return resInterval
+        if newInterval[0] > intervals[i][1]:
+            resInterval += [intervals[i]]
         else:
             newInterval[0] = min(newInterval[0], intervals[i][0])
             newInterval[1] = max(newInterval[1], intervals[i][1])
+    # newInterval is merged when it never get's merged in the loop above
+    # That means it's outside the given range
+    resInterval += [newInterval]
     return resInterval
 
-intervals = [[1,3],[6,9]]
-newInterval = [2,5]
+# intervals = [[1,3],[6,9]]
+# newInterval = [2,5]
+# intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]]
+# newInterval = [4,8]
+intervals = []
+newInterval = [5,7]
 print(insertInterval(intervals, newInterval))
