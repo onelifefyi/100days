@@ -1,10 +1,11 @@
 # https://leetcode.com/problems/insert-interval/
 # Approach:
 # Keep updating the newInterval
-# If newInterval ends before the interval starts, insert it first & insert the rest of the intervals to res & break
+# If newInterval ends before the interval starts, insert it first & insert the rest of the intervals to res & return
 # If newInterval starts after the interval ends, insert the interval to res & break
 # Otherwise (If they merge) | update the newInterval with the merged range & continue
-# Return res
+# Now, if it exits the loop, without inserting the newInterval, that means it's outside the given range, insert the newInterval
+# to the result and return
 # Time O(n) | Space O(n)
 def insertInterval(intervals, newInterval):
     resInterval = []
